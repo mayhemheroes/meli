@@ -150,6 +150,7 @@ pub mod contacts;
 pub use contacts::*;
 pub mod backends;
 pub use backends::*;
+pub mod sieve;
 mod collection;
 pub mod sieve;
 pub use collection::*;

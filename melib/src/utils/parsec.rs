@@ -312,7 +312,11 @@ macro_rules! permutation {
                 let mut any_success = false;
                 $(if results.$field.is_none() {
                     if let Ok((rest, res)) = $parser.parse(input) {
+<<<<<<< HEAD:melib/src/utils/parsec.rs
                         if res.is_some() || count > left {
+=======
+                        if !matches!(res, None) || count > left {
+>>>>>>> 94a3f854 (melib/sieve.rs: add beginning of sieve parser):melib/src/parsec.rs
                             results.$field = Some(res);
                             finished += 1;
                             count = 1;
