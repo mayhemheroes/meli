@@ -109,6 +109,7 @@ pub mod addressbook;
 pub use addressbook::*;
 pub mod backends;
 pub use backends::*;
+pub mod sieve;
 mod collection;
 pub use collection::*;
 pub mod conf;
