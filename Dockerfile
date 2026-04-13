@@ -13,7 +13,7 @@ RUN cargo install cargo-fuzz
 RUN cd fuzz && cargo fuzz build
 
 # Package Stage
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 COPY --from=builder meli/fuzz/target/x86_64-unknown-linux-gnu/release/envelope_parse /
 
