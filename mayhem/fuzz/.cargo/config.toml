@@ -1,0 +1,9 @@
+[build]
+# Force DWARF v3 for Mayhem coverage instrumentation (Mayhem triage cannot read DWARF >= 4).
+# NOTE: build.sh exports RUSTFLAGS which takes precedence over this during the cargo-fuzz build;
+# kept here (matching -Zdwarf-version=3) so a direct `cargo fuzz build` is consistent.
+rustflags = ["-C", "debuginfo=2", "-C", "force-frame-pointers=yes", "-Zdwarf-version=3"]
+
+[profile.release]
+# Debug info for fuzzing with DWARF v3
+debug = true
