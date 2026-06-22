@@ -1,0 +1,18 @@
+From: =?UTF-8?B?w4FsaWNl?= <alice@example.com>
+To: bob@example.com, carol@example.com
+Subject: =?UTF-8?Q?Re=3A_caf=C3=A9?=
+Date: Tue, 11 Jun 2026 09:30:00 +0200
+Message-Id: <multi@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="b1"
+
+--b1
+Content-Type: text/plain
+
+body text
+--b1
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+
+aGVsbG8=
+--b1--

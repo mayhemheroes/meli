@@ -1,0 +1,10 @@
+# Mayhem target: melib's RFC5322 e-mail parser (melib::Envelope::from_bytes).
+# Built by mayhem/build.sh as a libFuzzer binary (cargo-fuzz) at /mayhem/envelope_parse.
+project: meli
+target: envelope_parse
+testsuite:
+  - file:///mayhem/mayhem/testsuite/envelope_parse
+cmds:
+  - cmd: /mayhem/envelope_parse
+    libfuzzer: true
+    dictionary: /mayhem/fuzz/envelope_tokens.dict

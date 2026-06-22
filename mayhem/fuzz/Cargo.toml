@@ -1,0 +1,31 @@
+# Additive cargo-fuzz crate for the Mayhem two-branch model. Kept SEPARATE from upstream's
+# fuzz/ (which pins libfuzzer-sys 0.3 and builds melib with ALL default features → pulls
+# imap-codec, which fails to compile on the pinned fuzzing nightly). This crate builds the
+# SAME target (melib::Envelope::from_bytes) against melib's minimal parser core
+# (default-features = false: no imap/smtp/tls/sqlite), with the modern libfuzzer-sys that
+# cargo-fuzz 0.12 expects. Built via `cargo fuzz build --fuzz-dir mayhem/fuzz` (see mayhem/build.sh).
+[package]
+name = "melib-mayhem-fuzz"
+version = "0.0.0"
+authors = ["Mayhem integration"]
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+# Isolated sub-workspace so cargo-fuzz builds it independently of the meli root workspace.
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "envelope_parse"
+path = "fuzz_targets/envelope_parse.rs"
+test = false
+doc = false
+
+[dependencies]
+libfuzzer-sys = "0.4"
+# ../../melib: this crate lives at mayhem/fuzz/, so melib is two levels up. Minimal features —
+# the envelope parser is core melib and needs none of imap/nntp/maildir/smtp/tls/sqlite.
+melib = { path = "../../melib", default-features = false }

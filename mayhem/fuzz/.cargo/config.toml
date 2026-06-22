@@ -1,0 +1,7 @@
+[build]
+# Force DWARF v3 for Mayhem coverage instrumentation
+rustflags = ["-C", "debuginfo=2", "-C", "llvm-args=--dwarf-version=3"]
+
+[profile.release]
+# Debug info for fuzzing with DWARF v3
+debug = true
